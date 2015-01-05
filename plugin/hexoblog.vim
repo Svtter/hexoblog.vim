@@ -3,8 +3,9 @@
 " Maintainer: svtter <svtter@qq.com>
 " License: 
 
-
-let g:hexo_blogpath = ""
+if !exists("g:hexo_blogpath") 
+    let g:hexo_blogpath = ""
+endif
 
 
 if !exists(":Newblog")

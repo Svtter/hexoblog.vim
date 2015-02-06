@@ -12,6 +12,10 @@ if !exists(":Newblog")
   command -nargs=?  Newblog call s:NewPost(<f-args>)
 endif
 
+if !exists(":Pushpost")
+  command -nargs=?  Pushpost call s:Pushpost(<f-args>)
+endif
+
 " Transform string to functions
 " We cannot use `:e filename` so make it a function
 function! s:Trans()
@@ -39,6 +43,19 @@ function! s:NewPost(...)
         echo "Not set hexo_blogpath, use `let g:hexo_blogpath=` to set"
     endif
 endfunction
+
+" Update blog command
+function! s:Update()
+    let s:cmd = "!bash -c 'cd " . g:hexo_blogpath . "; hexo g; hexo d;'"
+    execute s:cmd
+endfunction
+
+
+" Pust post to website
+function! s:Pushpost(...)
+    call s:Update()
+endfunction
+    
 
 
 
